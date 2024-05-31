@@ -22,7 +22,7 @@ const Login = () => {
                     <h3 className="mb-2 text-black">Password</h3>
                     <input className="h-10 w-full outline-none pl-3 rounded-lg" type="password" name="password" placeholder="Enter Your Password" required />
                 </div>
-                <button className="btn bg-black text-white text-lg">Login</button>
+                <button className="btn bg-primary_color text-white text-lg">Login</button>
                 <div className="flex items-center font-medium mx-auto">
                     <h3>Do not have account</h3>
                     <Link to="/signUp">

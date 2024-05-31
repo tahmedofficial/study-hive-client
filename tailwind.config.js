@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        // "montserrat": "'Montserrat', sans-serif"
+      },
+      colors: {
+        "primary_color": "#775954",
+        // "primary_bg_color": "#C9BB9F",
+        // "primary_card_color": "#f8f8f8",
+      }
+    },
   },
   plugins: [require('daisyui')],
 }

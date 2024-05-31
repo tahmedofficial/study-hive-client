@@ -1,7 +1,8 @@
 import { RiMenu2Fill } from "react-icons/ri";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-    
+
     return (
         <nav>
             <div className="navbar bg-base-100 md:w-5/6 mx-auto">
@@ -11,9 +12,9 @@ const Navbar = () => {
                             <RiMenu2Fill className="h-5 w-5 text-black" />
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Homepage</a></li>
-                            <li><a>Portfolio</a></li>
-                            <li><a>About</a></li>
+                            <li><NavLink to="/">Home</NavLink></li>
+                            <li><NavLink to="/login">Login</NavLink></li>
+                            <li><NavLink to="/signUp">Sign Up</NavLink></li>
                         </ul>
                     </div>
                 </div>

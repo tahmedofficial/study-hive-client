@@ -69,7 +69,7 @@ const SignUp = () => {
                     <h3 className="mb-2 text-black">Password</h3>
                     <input className="h-10 w-full outline-none pl-3 rounded-lg" type="password" name="password" placeholder="Enter Your Password" required />
                 </div>
-                <button className="btn bg-black text-white text-lg">Sign Up</button>
+                <button className="btn bg-primary_color text-white text-lg">Sign Up</button>
                 <div className="flex items-center font-medium mx-auto">
                     <h3>Already Sign Up</h3>
                     <Link to="/login">
