@@ -11,6 +11,8 @@ export default {
       },
       colors: {
         "primary_color": "#775954",
+        "primary_bg_color": "#FBFAEF",
+        // "primary_bg_color": "#FBFAF5",
         // "primary_bg_color": "#C9BB9F",
         // "primary_card_color": "#f8f8f8",
       }
