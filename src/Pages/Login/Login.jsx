@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
+
+    const { loginUser, sweetMessage, errorMessage } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -9,6 +14,15 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        loginUser(email, password)
+            .then(result => {
+                sweetMessage(`${result?.user?.displayName} your are login successfully`)
+                navigate(location?.state ? location.state : "/")
+            })
+            .catch(() => {
+                errorMessage("Incorrect email or password")
+            })
     }
 
     return (
