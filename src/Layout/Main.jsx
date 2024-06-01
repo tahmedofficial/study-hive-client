@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Main = () => {
 
     return (
-        <div>
+        <div className="font-manrope">
             <Navbar></Navbar>
             <Outlet></Outlet>
             <ToastContainer />

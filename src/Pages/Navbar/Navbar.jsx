@@ -1,7 +1,14 @@
 import { RiMenu2Fill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
+
+    const { user } = useAuth();
+
+    const handleLogOut = () => {
+
+    }
 
     return (
         <nav>
@@ -24,8 +31,14 @@ const Navbar = () => {
                 <div className="navbar-end">
                     <div className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Profile" />
+                            <img src={user ? user?.photoURL : undefined} alt="Profile" />
                         </div>
+                    </div>
+                    <div className="ml-3">
+                        {user ?
+                            <button onClick={handleLogOut} className="btn bg-primary_color text-white">Log Out</button> :
+                            <button className="btn bg-primary_color text-white">Login</button>
+                        }
                     </div>
                 </div>
             </div>

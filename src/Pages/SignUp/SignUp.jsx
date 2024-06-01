@@ -1,73 +1,108 @@
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAuth from "../../Hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import { useState } from "react";
+import WaitModal from "../../Components/WaitModal/WaitModal";
+
+const image_key = import.meta.env.VITE_imageKey;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_key}`;
 
 const SignUp = () => {
 
-    const handleRegister = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const photo = form.photo.value;
-        const password = form.password.value;
-        console.log(name, email, photo, password);
+    const { signUpUser, setUser, sweetMessage, errorMessage } = useAuth()
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const axiosPublic = useAxiosPublic();
+    const [isFinihs, setFinish] = useState(false);
+    const navigate = useNavigate();
 
-        // // validation
-        // if (password.length < 6) {
-        //     errorMessage("Password must be 6 characters")
-        //     return
-        // }
+    const onSubmit = async (data) => {
 
-        // if (!/^(?=.*[A-Z]).+$/.test(password)) {
-        //     errorMessage("Enter an uppercase letter")
-        //     return
-        // }
+        // validation
+        if (data.password.length < 6) {
+            return errorMessage("Password must be 6 characters");
+        }
 
-        // if (!/^(?=.*[a-z]).+$/.test(password)) {
-        //     errorMessage("Enter an lowercase  letter")
-        //     return
-        // }
+        setFinish(true);
+        const imageFile = { image: data.photo[0] }
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: { "content-type": "multipart/form-data" }
+        })
 
-        // registerUser(email, password)
-        //     .then(result => {
-        //         updateProfile(result.user, {
-        //             displayName: name,
-        //             photoURL: photo,
-        //         })
-        //             .then(() => {
-        //                 setUser({
-        //                     displayName: name,
-        //                     photoURL: photo,
-        //                 })
-        //             })
-        //             .catch()
-        //         toastMessage("Registered Successfully")
-        //         navigate("/")
-        //     })
-        //     .catch(error => {
-        //         const errorMessage = error.message;
-        //         console.log(errorMessage);
-        //     })
+        if (res.data.success) {
+
+            signUpUser(data?.email, data?.password)
+                .then(result => {
+                    updateProfile(result.user, {
+                        displayName: data?.name,
+                        photoURL: res?.data?.data?.display_url,
+                    })
+                        .then(() => {
+                            setUser({
+                                displayName: data?.name,
+                                photoURL: res?.data?.data?.display_url
+                            })
+                            const user = {
+                                name: data?.name,
+                                email: data?.email,
+                                role: data?.role
+                            }
+                            axiosPublic.post("/users", user)
+                                .then(response => {
+                                    console.log(response.data);
+                                    if (response.data.insertedId) {
+                                        setFinish(false);
+                                        sweetMessage(`${data?.name} your account created successfully`)
+                                        navigate("/")
+                                    }
+                                })
+                        })
+                        .catch(() => setFinish(false))
+                })
+                .catch(error => {
+                    setFinish(false);
+                    if (error.code === "auth/email-already-in-use") {
+                        errorMessage("Email address already in use")
+                    }
+                    const errorMessage = error.message;
+                    console.log(errorMessage);
+                })
+        }
     }
 
     return (
         <div>
             <h1 className="font-semibold text-center text-black py-14 text-4xl">Sign Up</h1>
-            <form onSubmit={handleRegister} className="flex flex-col gap-5 bg-gray-100 mx-3  p-10 md:w-4/6 md:mx-auto md:px-28 md:py-20 lg:px-44 rounded-2xl">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 bg-gray-100 mx-3  p-10 md:w-4/6 md:mx-auto md:px-28 md:py-20 lg:px-44 rounded-2xl">
                 <div>
                     <h3 className="mb-2 text-black">Name</h3>
-                    <input className="h-10 w-full outline-none pl-3 rounded-lg" type="text" name="name" placeholder="Enter Your Name" required />
+                    <input {...register("name", { required: true })} className="h-10 w-full outline-none pl-3 rounded-lg" type="text" placeholder="Enter Your Name" />
+                    {errors.name && <span className="text-red-600">This field is required</span>}
                 </div>
                 <div>
                     <h3 className="mb-2 text-black">Email</h3>
-                    <input className="h-10 w-full outline-none pl-3 rounded-lg" type="email" name="email" placeholder="Enter Your Email" required />
+                    <input {...register("email", { required: true })} className="h-10 w-full outline-none pl-3 rounded-lg" type="email" placeholder="Enter Your Email" />
+                    {errors.email && <span className="text-red-600">This field is required</span>}
                 </div>
                 <div>
-                    <h3 className="mb-2 text-black">Photo</h3>
-                    <input className="h-10 w-full outline-none pl-3 rounded-lg" type="text" name="photo" placeholder="Enter Your Photo Url" required />
+                    <h3 className="mb-2 text-black">User Role</h3>
+                    <select {...register("role", { required: true })} className="h-10 w-full outline-none pl-3 rounded-lg" defaultValue="student" >
+                        <option value="student" >student</option>
+                        <option>tutor</option>
+                        <option>admin</option>
+                    </select>
+                    {errors.role && <span className="text-red-600">This field is required</span>}
                 </div>
                 <div>
                     <h3 className="mb-2 text-black">Password</h3>
-                    <input className="h-10 w-full outline-none pl-3 rounded-lg" type="password" name="password" placeholder="Enter Your Password" required />
+                    <input {...register("password", { required: true })} className="h-10 w-full outline-none pl-3 rounded-lg" type="password" placeholder="Enter Your Password" />
+                    {errors.password && <span className="text-red-600">This field is required</span>}
+                </div>
+                <div>
+                    <h3 className="mb-2 text-black">Profile Picture</h3>
+                    <input {...register("photo", { required: true })} className="file-input w-72 h-10" type="file" /> <br />
+                    {errors.photo && <span className="text-red-600">This field is required</span>}
                 </div>
                 <button className="btn bg-primary_color text-white text-lg">Sign Up</button>
                 <div className="flex items-center font-medium mx-auto">
@@ -77,6 +112,9 @@ const SignUp = () => {
                     </Link>
                 </div>
             </form>
+            <div>
+                {isFinihs ? <WaitModal message="Account is creating"></WaitModal> : undefined}
+            </div>
         </div>
     );
 };

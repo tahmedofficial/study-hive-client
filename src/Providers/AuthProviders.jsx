@@ -78,6 +78,7 @@ const AuthProviders = ({ children }) => {
         loginUser,
         loginWithGoogle,
         loginWithGithub,
+        setUser,
         logOutUser,
         sweetMessage,
         errorMessage

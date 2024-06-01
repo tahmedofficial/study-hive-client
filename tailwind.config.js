@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // "montserrat": "'Montserrat', sans-serif"
+        "manrope": "'Manrope', sans-serif"
       },
       colors: {
         "primary_color": "#775954",
