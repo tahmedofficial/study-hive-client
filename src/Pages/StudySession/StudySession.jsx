@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SessionCart from "../../Components/SessionCart/SessionCart";
 import useAuth from "../../Hooks/useAuth";
 
@@ -13,6 +14,9 @@ const StudySession = () => {
                     courses.slice(0, 5).map(course => <SessionCart key={course._id} session={course}></SessionCart>)
                 }
             </div>
+            <Link to="/allSessions">
+                <button className="btn mt-10 bg-primary_color text-white px-12 flex mx-auto">See All Sessions</button>
+            </Link>
         </div>
     );
 };

@@ -34,7 +34,11 @@ const Navbar = () => {
                     <h1 className="text-3xl font-semibold hidden lg:block">Study<span className="text-rose-600">Hive</span></h1>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn bg-primary_color mx-2 text-white">Dashboard</button>
+                    <div>
+                        <Link to="/dashboard/bookedSession">
+                            <button className="btn bg-primary_color mx-2 text-white">Dashboard</button>
+                        </Link>
+                    </div>
                     <div className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img src={user ? user?.photoURL : undefined} alt="Profile" />
