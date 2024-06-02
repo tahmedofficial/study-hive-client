@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import AllSessions from "../Pages/AllSessions/AllSessions";
+import SessionDetails from "../Components/SessionDetails/SessionDetails";
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: "/allSessions",
                 element: <AllSessions></AllSessions>
+            },
+            {
+                path: "/sessionDetails/:id",
+                element: <SessionDetails></SessionDetails>
             }
         ]
     },

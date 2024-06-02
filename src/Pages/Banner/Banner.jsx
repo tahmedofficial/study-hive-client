@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import banner from "../../assets/images/bannerImg.avif";
 
 const Banner = () => {
@@ -13,7 +14,9 @@ const Banner = () => {
                             Embark on a journey like no other as you discover the captivating allure of Paris, a land brimming with diverse landscapes, vibrant cultures, and immersive experiences. Nestled in the heart of the continent, Spin beckons travelers with its blend of ancient traditions and modern marvels.
                         </h3>
                         <div>
-                            <button className="btn text-white bg-primary_color rounded-none px-10">See our programs</button>
+                            <Link to="/allSessions">
+                                <button className="btn text-white bg-primary_color rounded-none px-10">See our programs</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="md:col-span-1 p-4 pt-10">

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const SessionCart = ({ session }) => {
 
-    const { image, title, description, registrationStartDate, registrationEndDate } = session;
+    const { _id, image, title, description, registrationStartDate, registrationEndDate } = session;
     const [isDate, setDate] = useState(true);
     const [isUpcoming, setUpcoming] = useState(true);
 
@@ -43,7 +44,9 @@ const SessionCart = ({ session }) => {
                         </>
                 }
             </div>
-            <button className='btn bg-primary_color text-white mt-5'>Read More</button>
+            <Link to={`/sessionDetails/${_id}`}>
+                <button className='btn bg-primary_color w-full text-white mt-5'>Read More</button>
+            </Link>
         </div>
     );
 };
