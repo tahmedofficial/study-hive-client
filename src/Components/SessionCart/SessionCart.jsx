@@ -26,7 +26,7 @@ const SessionCart = ({ session }) => {
     return (
         <div className='p-3 shadow-md max-w-96 rounded-lg bg-primary_bg_color h-full flex flex-col'>
             <div>
-                <img className='max-w-90 rounded-lg lg:h-48' src={image} alt="image" />
+                <img className='max-w-90 w-full rounded-lg lg:h-48' src={image} alt="image" />
             </div>
             <div className='my-4 flex-grow'>
                 <h1 className='text-xl md:text-2xl font-medium'>Title: {title}</h1>

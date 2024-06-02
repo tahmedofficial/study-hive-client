@@ -5,6 +5,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import AllSessions from "../Pages/AllSessions/AllSessions";
 import SessionDetails from "../Components/SessionDetails/SessionDetails";
+import PrivateRoute from "../Routes/PrivateRoute"
 
 
 const router = createBrowserRouter([
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/sessionDetails/:id",
-                element: <SessionDetails></SessionDetails>
+                element: <PrivateRoute><SessionDetails></SessionDetails></PrivateRoute>
             }
         ]
     },
