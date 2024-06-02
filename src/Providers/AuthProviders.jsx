@@ -4,6 +4,8 @@ import { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 
 export const AuthContext = createContext(null);
@@ -12,6 +14,7 @@ const AuthProviders = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [isLoading, setLoading] = useState(true);
+    const axiosPublic = useAxiosPublic();
 
     const sweetMessage = (message) => {
         Swal.fire({
@@ -63,6 +66,15 @@ const AuthProviders = ({ children }) => {
         return signOut(auth);
     }
 
+
+    const { data: courses = [] } = useQuery({
+        queryKey: ["courses"],
+        queryFn: async () => {
+            const res = await axiosPublic.get("/courses");
+            return res.data;
+        }
+    })
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -74,6 +86,7 @@ const AuthProviders = ({ children }) => {
     const authInfo = {
         user,
         isLoading,
+        courses,
         signUpUser,
         loginUser,
         loginWithGoogle,
