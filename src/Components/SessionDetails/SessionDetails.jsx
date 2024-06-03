@@ -42,7 +42,7 @@ const SessionDetails = () => {
             tutorEmail: tutorEmail
         }
 
-        axiosSecure.post("booked", booking)
+        axiosSecure.post("/booked", booking)
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
@@ -74,7 +74,7 @@ const SessionDetails = () => {
                     </div>
                     <div className="flex gap-3">
                         <h3 className="btn btn-sm  rounded-full bg-red-200">Duration: {duration}</h3>
-                        <h3 className="btn btn-sm  rounded-full bg-red-200">Registration Fee: {registrationFee}</h3>
+                        <h3 className="btn btn-sm  rounded-full bg-red-200">Registration Fee: ${registrationFee}</h3>
                     </div>
                     {
                         isClosed ?
