@@ -15,10 +15,10 @@ const Dashboard = () => {
         <div className="flex gap-5">
             <div>
                 {
-                    isAdmin?.admin ? <AdminSidebar></AdminSidebar> :
+                    isAdmin ? <AdminSidebar></AdminSidebar> :
                         <>
                             {
-                                isTutor?.tutor ? <TutorSidebar></TutorSidebar> :
+                                isTutor ? <TutorSidebar></TutorSidebar> :
                                     <StudentSidebar></StudentSidebar>
                             }
                         </>

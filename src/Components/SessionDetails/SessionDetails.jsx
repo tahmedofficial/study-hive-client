@@ -1,14 +1,21 @@
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useAdmin from "../../Hooks/useAdmin";
+import useTutor from "../../Hooks/useTutor";
+import useAuth from "../../Hooks/useAuth";
 
 const SessionDetails = () => {
 
+    const { user, sweetMessage, errorMessage } = useAuth();
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     const [session, setSession] = useState({});
     const [isClosed, setClosed] = useState(true);
-    const { image, title, description, duration, tutorName, registrationFee, registrationStartDate, registrationEndDate, classEndDate, classStartTime } = session;
+    const navigate = useNavigate();
+    const [isAdmin] = useAdmin();
+    const [isTutor] = useTutor();
+    const { image, title, description, duration, tutorName, tutorEmail, registrationFee, registrationStartDate, registrationEndDate, classEndDate, classStartTime } = session;
 
     useEffect(() => {
         axiosSecure.get(`/courses/${id}`)
@@ -22,6 +29,28 @@ const SessionDetails = () => {
         setClosed(isClosed);
 
     }, [axiosSecure, id, registrationEndDate])
+
+    const handleBookNow = () => {
+
+        if (registrationFee) {
+            return navigate(`/payment/${id}`)
+        }
+
+        const booking = {
+            sessionId: id,
+            studentEmail: user?.email,
+            tutorEmail: tutorEmail
+        }
+
+        axiosSecure.post("booked", booking)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    return sweetMessage(`You have Successfully Book ${title}`)
+                }
+                errorMessage("You have already Book this session")
+            })
+    }
 
     return (
         <div className="px-4 pt-16 pb-10 bg-primary_bg_color">
@@ -49,7 +78,13 @@ const SessionDetails = () => {
                     </div>
                     {
                         isClosed ?
-                            <button className="btn bg-primary_color px-10 text-white mt-5">Book now</button> :
+                            <>
+                                {
+                                    isAdmin || isTutor ?
+                                        <button disabled className="btn bg-primary_color px-10 text-white mt-5">Book now</button> :
+                                        <button onClick={handleBookNow} className="btn bg-primary_color px-10 text-white mt-5">Book now</button>
+                                }
+                            </> :
                             <button disabled className="btn bg-primary_color px-10 text-white mt-5">Registration Closed</button>
                     }
                 </div>

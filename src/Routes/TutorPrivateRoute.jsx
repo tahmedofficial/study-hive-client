@@ -10,10 +10,10 @@ const TutorPrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if (isLoading || isPending) {
-        return <span className="loading loading-spinner loading-lg text-primary_color mt-20 flex justify-center mx-auto"></span>
+        return <span className="loading loading-spinner loading-lg text-primary_color mt-20"></span>
     }
 
-    if (user && isTutor?.tutor) {
+    if (user && isTutor) {
         return children;
     }
 

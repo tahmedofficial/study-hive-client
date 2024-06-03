@@ -21,6 +21,7 @@ import AllStudySession from "../Pages/Dashboard/AdminDashboard/AllStudySession/A
 import AllMaterials from "../Pages/Dashboard/AdminDashboard/AllMaterials/AllMaterials";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import TutorPrivateRoute from "./TutorPrivateRoute";
+import PaymentPage from "../Pages/PaymentPage/PaymentPage";
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
             {
                 path: "/sessionDetails/:id",
                 element: <PrivateRoute><SessionDetails></SessionDetails></PrivateRoute>
+            },
+            {
+                path: "/payment/:id",
+                element: <PrivateRoute><PaymentPage></PaymentPage></PrivateRoute>
             }
         ]
     },

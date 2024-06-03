@@ -13,7 +13,7 @@ const AdminPrivateRoute = ({ children }) => {
         return <span className="loading loading-spinner loading-lg text-primary_color mt-20 flex justify-center mx-auto"></span>
     }
 
-    if (user && isAdmin?.admin) {
+    if (user && isAdmin) {
         return children;
     }
 
