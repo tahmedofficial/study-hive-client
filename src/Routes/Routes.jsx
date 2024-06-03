@@ -19,6 +19,8 @@ import ViewAllNotes from "../Pages/Dashboard/TutorDashboard/ViewAllNotes/ViewAll
 import ViewAllUsers from "../Pages/Dashboard/AdminDashboard/ViewAllUsers/ViewAllUsers";
 import AllStudySession from "../Pages/Dashboard/AdminDashboard/AllStudySession/AllStudySession";
 import AllMaterials from "../Pages/Dashboard/AdminDashboard/AllMaterials/AllMaterials";
+import AdminPrivateRoute from "./AdminPrivateRoute";
+import TutorPrivateRoute from "./TutorPrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -50,7 +52,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             // Student Routes
             {
@@ -72,36 +74,36 @@ const router = createBrowserRouter([
             // Tutor Routes
             {
                 path: "createStudySession",
-                element: <CreateStudySession></CreateStudySession>
+                element: <TutorPrivateRoute><CreateStudySession></CreateStudySession></TutorPrivateRoute>
             },
             {
                 path: "viewAllStudySessions",
-                element: <ViewAllStudySessions></ViewAllStudySessions>
+                element: <TutorPrivateRoute><ViewAllStudySessions></ViewAllStudySessions></TutorPrivateRoute>
             },
             {
                 path: "uploadMaterials",
-                element: <UploadMaterials></UploadMaterials>
+                element: <TutorPrivateRoute><UploadMaterials></UploadMaterials></TutorPrivateRoute>
             },
             {
                 path: "viewAllMaterials",
-                element: <ViewAllMaterials></ViewAllMaterials>
+                element: <TutorPrivateRoute><ViewAllMaterials></ViewAllMaterials></TutorPrivateRoute>
             },
             {
                 path: "viewAllNotes",
-                element: <ViewAllNotes></ViewAllNotes>
+                element: <TutorPrivateRoute><ViewAllNotes></ViewAllNotes></TutorPrivateRoute>
             },
             // Admin Routes
             {
                 path: "viewAllUsers",
-                element: <ViewAllUsers></ViewAllUsers>
+                element: <AdminPrivateRoute><ViewAllUsers></ViewAllUsers></AdminPrivateRoute>
             },
             {
                 path: "allStudySession",
-                element: <AllStudySession></AllStudySession>
+                element: <AdminPrivateRoute><AllStudySession></AllStudySession></AdminPrivateRoute>
             },
             {
                 path: "allMaterials",
-                element: <AllMaterials></AllMaterials>
+                element: <AdminPrivateRoute><AllMaterials></AllMaterials></AdminPrivateRoute>
             }
         ]
     }
