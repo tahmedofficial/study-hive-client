@@ -6,14 +6,12 @@ const TutorSection = () => {
     const axiosPublic = useAxiosPublic();
 
     const { data: tutors = [] } = useQuery({
-        queryKey: ["tutor"],
+        queryKey: ["tutors"],
         queryFn: async () => {
             const res = await axiosPublic.get("/tutors");
             return res.data;
         }
     })
-
-    console.log(tutors);
 
     return (
         <div className="md:w-5/6 mx-auto mt-16">

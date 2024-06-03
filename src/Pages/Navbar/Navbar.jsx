@@ -1,10 +1,14 @@
 import { RiMenu2Fill } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import useAdmin from "../../Hooks/useAdmin";
+import useTutor from "../../Hooks/useTutor";
 
 const Navbar = () => {
 
     const { user, logOutUser, sweetMessage } = useAuth();
+    const [isAdmin] = useAdmin();
+    const [isTutor] = useTutor();
 
     const handleLogOut = () => {
         logOutUser()
@@ -35,9 +39,23 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <div>
-                        <Link to="/dashboard/bookedSession">
-                            <button className="btn bg-primary_color mx-2 text-white">Dashboard</button>
-                        </Link>
+                        {
+                            isAdmin?.admin ?
+                                <Link to="/dashboard/viewAllUsers">
+                                    <button className="btn bg-primary_color mx-2 text-white">Dashboard</button>
+                                </Link> :
+                                <>
+                                    {
+                                        isTutor?.tutor ?
+                                            <Link to="/dashboard/createStudySession">
+                                                <button className="btn bg-primary_color mx-2 text-white">Dashboard</button>
+                                            </Link> :
+                                            <Link to="/dashboard/bookedSession">
+                                                <button className="btn bg-primary_color mx-2 text-white">Dashboard</button>
+                                            </Link>
+                                    }
+                                </>
+                        }
                     </div>
                     <div className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
