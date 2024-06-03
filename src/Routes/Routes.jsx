@@ -11,6 +11,11 @@ import BookedSession from "../Pages/Dashboard/StudentDashboard/BookedSession/Boo
 import CreateNote from "../Pages/Dashboard/StudentDashboard/CreateNote/CreateNote";
 import ManageNotes from "../Pages/Dashboard/StudentDashboard/ManageNotes/ManageNotes";
 import ViewStudyMaterials from "../Pages/Dashboard/StudentDashboard/ViewStudyMaterials/ViewStudyMaterials";
+import CreateStudySession from "../Pages/Dashboard/TutorDashboard/CreateStudySession/CreateStudySession";
+import ViewAllStudySessions from "../Pages/Dashboard/TutorDashboard/ViewAllStudySessions/ViewAllStudySessions";
+import UploadMaterials from "../Pages/Dashboard/TutorDashboard/UploadMaterials/UploadMaterials";
+import ViewAllMaterials from "../Pages/Dashboard/TutorDashboard/ViewAllMaterials/ViewAllMaterials";
+import ViewAllNotes from "../Pages/Dashboard/TutorDashboard/ViewAllNotes/ViewAllNotes";
 
 
 const router = createBrowserRouter([
@@ -44,6 +49,7 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <Dashboard></Dashboard>,
         children: [
+            // Student Routes
             {
                 path: "bookedSession",
                 element: <BookedSession></BookedSession>
@@ -59,7 +65,29 @@ const router = createBrowserRouter([
             {
                 path: "viewStudyMaterials",
                 element: <ViewStudyMaterials></ViewStudyMaterials>
+            },
+            // Tutor Routes
+            {
+                path: "createStudySession",
+                element: <CreateStudySession></CreateStudySession>
+            },
+            {
+                path: "viewAllStudySessions",
+                element: <ViewAllStudySessions></ViewAllStudySessions>
+            },
+            {
+                path: "uploadMaterials",
+                element: <UploadMaterials></UploadMaterials>
+            },
+            {
+                path: "viewAllMaterials",
+                element: <ViewAllMaterials></ViewAllMaterials>
+            },
+            {
+                path: "viewAllNotes",
+                element: <ViewAllNotes></ViewAllNotes>
             }
+            // Admin Routes
         ]
     }
 ]);
