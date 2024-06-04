@@ -25,7 +25,7 @@ const Dashboard = () => {
                 }
 
             </div>
-            <div className="pt-5">
+            <div className=" flex-1 pt-5">
                 <Outlet></Outlet>
             </div>
         </div>

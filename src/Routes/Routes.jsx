@@ -22,6 +22,7 @@ import AllMaterials from "../Pages/Dashboard/AdminDashboard/AllMaterials/AllMate
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import TutorPrivateRoute from "./TutorPrivateRoute";
 import PaymentPage from "../Pages/PaymentPage/PaymentPage";
+import BookingDetails from "../Pages/Dashboard/StudentDashboard/BookedSession/BookingDetails";
 
 
 const router = createBrowserRouter([
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: "bookedSession",
                 element: <BookedSession></BookedSession>
+            },
+            {
+                path:"bookingDetails/:id",
+                element: <BookingDetails></BookingDetails>
             },
             {
                 path: "createNote",

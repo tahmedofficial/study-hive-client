@@ -36,20 +36,24 @@ const SessionDetails = () => {
             return navigate(`/payment/${id}`)
         }
 
-        const booking = {
-            sessionId: id,
-            studentEmail: user?.email,
-            tutorEmail: tutorEmail
+        if (user?.email) {
+            const booking = {
+                sessionId: id,
+                studentEmail: user?.email,
+                tutorEmail: tutorEmail
+            }
+            console.log(user?.email);
+
+            axiosSecure.post("/booked", booking)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        return sweetMessage(`You have Successfully Book ${title}`)
+                    }
+                    errorMessage("You have already Book this session")
+                })
         }
 
-        axiosSecure.post("/booked", booking)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.insertedId) {
-                    return sweetMessage(`You have Successfully Book ${title}`)
-                }
-                errorMessage("You have already Book this session")
-            })
     }
 
     return (

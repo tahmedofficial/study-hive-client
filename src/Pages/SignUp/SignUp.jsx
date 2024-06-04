@@ -41,6 +41,7 @@ const SignUp = () => {
                     })
                         .then(() => {
                             setUser({
+                                email: data?.email,
                                 displayName: data?.name,
                                 photoURL: res?.data?.data?.display_url
                             })
