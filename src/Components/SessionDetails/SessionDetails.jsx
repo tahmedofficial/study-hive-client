@@ -12,6 +12,7 @@ const SessionDetails = () => {
     const axiosSecure = useAxiosSecure();
     const [session, setSession] = useState({});
     const [isClosed, setClosed] = useState(true);
+    const [review, setReview] = useState({});
     const navigate = useNavigate();
     const [isAdmin] = useAdmin();
     const [isTutor] = useTutor();
@@ -29,6 +30,13 @@ const SessionDetails = () => {
         setClosed(isClosed);
 
     }, [axiosSecure, id, registrationEndDate])
+
+    useEffect(() => {
+        axiosSecure.get(`/review/${id}`)
+            .then(res => {
+                setReview(res.data);
+            })
+    }, [axiosSecure, id])
 
     const handleBookNow = () => {
 
@@ -56,6 +64,7 @@ const SessionDetails = () => {
 
     }
 
+
     return (
         <div className="px-4 pt-16 pb-10 bg-primary_bg_color">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:w-5/6 mx-auto shadow-md p-5 rounded-xl border-t">
@@ -66,8 +75,8 @@ const SessionDetails = () => {
                     <h1 className="text-2xl font-medium"><span className="font-bold">Title:</span> {title}</h1>
                     <h3 className="mt-3"><span className="font-bold">Description:</span> {description}</h3>
                     <h3 className="mt-3"><span className="font-bold">Tutor Name:</span> {tutorName}</h3>
-                    <h3 className="mt-3"><span className="font-bold">Average rating:</span> </h3>
-                    <h3 className="my-3"><span className="font-bold">Reviews:</span> </h3>
+                    <h3 className="mt-3"><span className="font-bold">Average rating:</span> {review?.reting}</h3>
+                    <h3 className="my-3"><span className="font-bold">Reviews:</span> {review?.review}</h3>
                     <div className="flex flex-col md:flex-row gap-3">
                         <h3 className="btn btn-sm rounded-full bg-red-200">Registration Start: {registrationStartDate}</h3>
                         <h3 className="btn btn-sm rounded-full bg-red-200">Registration End: {registrationEndDate}</h3>
