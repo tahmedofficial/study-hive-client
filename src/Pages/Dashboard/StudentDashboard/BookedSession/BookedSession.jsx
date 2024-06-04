@@ -16,7 +16,7 @@ const BookedSession = () => {
         }
     })
     // const myBooking = info.filter(booking => user?.email === booking.studentEmail);
-    console.log(myBooking);
+
     return (
         <div>
             <div className="overflow-x-auto lg:w-5/6">
@@ -28,7 +28,6 @@ const BookedSession = () => {
                             <th>Title</th>
                             <th>Tutor Name</th>
                             <th>Detail</th>
-                            <th>review</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,7 +48,6 @@ const BookedSession = () => {
                                         <button className="btn btn-sm bg-primary_color text-white">View Detail</button>
                                     </Link>
                                 </td>
-                                <td><button className="btn btn-sm bg-primary_color text-white">Review</button></td>
                             </tr>)
                         }
 
