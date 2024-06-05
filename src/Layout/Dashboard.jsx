@@ -13,7 +13,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex gap-5">
-            <div>
+            <div className="h-full">
                 {
                     isAdmin ? <AdminSidebar></AdminSidebar> :
                         <>

@@ -22,13 +22,13 @@ const Navbar = () => {
                 <div className="navbar-start">
                     <div>
                         {
-                            isAdmin?.admin ?
+                            isAdmin ?
                                 <Link to="/dashboard/viewAllUsers">
                                     <button className="btn bg-primary_color mx-2 text-white">Dashboard</button>
                                 </Link> :
                                 <>
                                     {
-                                        isTutor?.tutor ?
+                                        isTutor ?
                                             <Link to="/dashboard/createStudySession">
                                                 <button className="btn bg-primary_color mx-2 text-white">Dashboard</button>
                                             </Link> :

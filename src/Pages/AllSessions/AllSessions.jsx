@@ -4,7 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const AllSessions = () => {
 
-    const {courses}=useAuth();
+    const { courses } = useAuth();
 
     return (
         <div className="md:w-5/6 mx-auto mt-16 px-4">
