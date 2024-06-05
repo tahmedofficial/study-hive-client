@@ -1,11 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
+import { useState } from "react";
+import UpdateModal from "./UpdateModal";
 
 const ManageNotes = () => {
 
     const { user, sweetMessage } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const [showModal, setShowModal] = useState(false);
+    const [id, setId] = useState("");
 
     const { data: notes = [], refetch } = useQuery({
         queryKey: ["notes"],
@@ -15,8 +19,9 @@ const ManageNotes = () => {
         }
     })
 
-    const handleUpdate = (id) => {
-        console.log(id);
+    const handleUpdatePage = (id) => {
+        setId(id);
+        setShowModal(true);
     }
 
     const handleDelete = (id) => {
@@ -40,11 +45,16 @@ const ManageNotes = () => {
                             <div className="divider"></div>
                             <h2>{note.description}</h2>
                             <div className="flex justify-end mt-auto pt-4 gap-4">
-                                <button onClick={() => handleUpdate(note._id)} className="btn btn-sm bg-green-600 text-white">Update</button>
+                                <button onClick={() => handleUpdatePage(note._id)} className="btn btn-sm bg-green-600 text-white">Update</button>
                                 <button onClick={() => handleDelete(note._id)} className="btn btn-sm bg-red-600 text-white">Delete</button>
                             </div>
                         </div>
                     </div>)
+                }
+            </div>
+            <div>
+                {
+                    showModal ? <UpdateModal id={id} refetch={refetch} onClose={() => setShowModal(false)}></UpdateModal> : undefined
                 }
             </div>
         </div>
