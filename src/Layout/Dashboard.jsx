@@ -13,7 +13,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex gap-5">
-            <div className="h-full">
+            <div className="bg-primary_bg_color">
                 {
                     isAdmin ? <AdminSidebar></AdminSidebar> :
                         <>
