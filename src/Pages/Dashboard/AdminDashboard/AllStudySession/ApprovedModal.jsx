@@ -4,11 +4,11 @@ import { MdClose } from "react-icons/md";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 
-const ApprovedModal = ({ onClose, id, refetch }) => {
+const ApprovedModal = ({ onClose, id, refetch, reload }) => {
 
     const modalRef = useRef();
     const axiosSecure = useAxiosSecure();
-    const { reload, sweetMessage } = useAuth();
+    const { reload: loading, sweetMessage } = useAuth();
     const [price, setPrice] = useState(0);
 
     const closeModal = (event) => {
@@ -37,6 +37,7 @@ const ApprovedModal = ({ onClose, id, refetch }) => {
                 if (res.data.modifiedCount) {
                     refetch();
                     reload();
+                    loading();
                     onClose();
                     sweetMessage("Update Successfully")
                 }
@@ -64,5 +65,6 @@ export default ApprovedModal;
 ApprovedModal.propTypes = {
     onClose: PropTypes.func,
     id: PropTypes.string,
-    refetch: PropTypes.func
+    refetch: PropTypes.func,
+    reload: PropTypes.func
 }

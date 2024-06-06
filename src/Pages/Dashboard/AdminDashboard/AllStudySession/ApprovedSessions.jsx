@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
-const ApprovedSessions = ({ session, index, reload }) => {
+const ApprovedSessions = ({ session, index, reload, setId, setModal }) => {
 
     const { reload: loading, sweetMessage } = useAuth();
     const axiosSecure = useAxiosSecure();
@@ -11,7 +11,8 @@ const ApprovedSessions = ({ session, index, reload }) => {
     const { _id, image, tutorName, tutorEmail, registrationFee, status } = session;
 
     const handleUpdate = (id) => {
-        console.log(id);
+        setId(id);
+        setModal(true);
     }
 
     const handleDelete = (id) => {
@@ -63,5 +64,7 @@ export default ApprovedSessions;
 ApprovedSessions.propTypes = {
     reload: PropTypes.func,
     session: PropTypes.object,
-    index: PropTypes.number
+    index: PropTypes.number,
+    setId: PropTypes.func,
+    setModal: PropTypes.func
 }

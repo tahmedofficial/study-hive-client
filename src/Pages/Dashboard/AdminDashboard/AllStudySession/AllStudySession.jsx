@@ -4,14 +4,17 @@ import { useState } from "react";
 import StatusModal from "./StatusModal";
 import ApprovedModal from "./ApprovedModal";
 import ApprovedSessions from "./ApprovedSessions";
+import UpdateModal from "./UpdateModal";
 
 const AllStudySession = () => {
 
     const axiosSecure = useAxiosSecure();
     const [showModal, setShowModal] = useState(false);
     const [showApprovedModal, setShowApprovedModal] = useState(false);
-    const [rejectId, setRejectId] = useState("");
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [approvedId, setApprovedId] = useState("");
+    const [updateId, setUpdateId] = useState("");
+    const [rejectId, setRejectId] = useState("");
 
     const { data: sessions = [], refetch } = useQuery({
         queryKey: ["pendingSessions"],
@@ -100,7 +103,7 @@ const AllStudySession = () => {
                         <tbody>
                             {
                                 approvedSessions.map((session, index) => <tr key={session._id}>
-                                    <ApprovedSessions session={session} index={index} reload={reload}></ApprovedSessions>
+                                    <ApprovedSessions setModal={setShowUpdateModal} setId={setUpdateId} session={session} index={index} reload={reload}></ApprovedSessions>
                                 </tr>)
                             }
                         </tbody>
@@ -110,12 +113,17 @@ const AllStudySession = () => {
 
             <div>
                 {
-                    showApprovedModal ? <ApprovedModal refetch={refetch} id={approvedId} onClose={() => setShowApprovedModal(false)}></ApprovedModal> : undefined
+                    showApprovedModal ? <ApprovedModal reload={reload} refetch={refetch} id={approvedId} onClose={() => setShowApprovedModal(false)}></ApprovedModal> : undefined
                 }
             </div>
             <div>
                 {
                     showModal ? <StatusModal refetch={refetch} id={rejectId} onClose={() => setShowModal(false)}></StatusModal> : undefined
+                }
+            </div>
+            <div>
+                {
+                    showUpdateModal ? <UpdateModal refetch={reload} id={updateId} onClose={() => setShowUpdateModal(false)}></UpdateModal> : undefined
                 }
             </div>
         </div>
