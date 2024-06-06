@@ -67,7 +67,7 @@ const AuthProviders = ({ children }) => {
     }
 
 
-    const { data: courses = [] } = useQuery({
+    const { data: courses = [], refetch: reload } = useQuery({
         queryKey: ["courses"],
         queryFn: async () => {
             const res = await axiosPublic.get("/courses");
@@ -94,7 +94,8 @@ const AuthProviders = ({ children }) => {
         setUser,
         logOutUser,
         sweetMessage,
-        errorMessage
+        errorMessage,
+        reload
     }
 
     return (
