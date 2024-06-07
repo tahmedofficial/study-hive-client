@@ -44,6 +44,8 @@ const AllStudySession = () => {
 
     return (
         <div>
+            <h1 className="text-4xl font-semibold text-center my-10">Pending Sessions</h1>
+            <div className="divider"></div>
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>
@@ -83,8 +85,8 @@ const AllStudySession = () => {
                 </table>
             </div>
 
+            <h1 className="text-4xl font-semibold text-center my-10">Approved Sessions</h1>
             <div className="divider"></div>
-
             <div>
                 <div className="overflow-x-auto">
                     <table className="table">
