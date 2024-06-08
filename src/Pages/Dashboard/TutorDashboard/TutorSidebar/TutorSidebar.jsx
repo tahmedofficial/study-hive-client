@@ -7,7 +7,6 @@ const TutorSidebar = () => {
             <li><NavLink to="/dashboard/viewAllStudySessions">View All Study Sessions</NavLink></li>
             <li><NavLink to="/dashboard/uploadMaterials">Upload Materials</NavLink></li>
             <li><NavLink to="/dashboard/viewAllMaterials">View All Materials</NavLink></li>
-            <li><NavLink to="/dashboard/viewAllNotes">View All Notes</NavLink></li>
             <div className="divider"></div>
             <li><NavLink to="/">Home</NavLink></li>
         </ul>

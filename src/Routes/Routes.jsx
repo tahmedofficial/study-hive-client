@@ -15,7 +15,6 @@ import CreateStudySession from "../Pages/Dashboard/TutorDashboard/CreateStudySes
 import ViewAllStudySessions from "../Pages/Dashboard/TutorDashboard/ViewAllStudySessions/ViewAllStudySessions";
 import UploadMaterials from "../Pages/Dashboard/TutorDashboard/UploadMaterials/UploadMaterials";
 import ViewAllMaterials from "../Pages/Dashboard/TutorDashboard/ViewAllMaterials/ViewAllMaterials";
-import ViewAllNotes from "../Pages/Dashboard/TutorDashboard/ViewAllNotes/ViewAllNotes";
 import ViewAllUsers from "../Pages/Dashboard/AdminDashboard/ViewAllUsers/ViewAllUsers";
 import AllStudySession from "../Pages/Dashboard/AdminDashboard/AllStudySession/AllStudySession";
 import AllMaterials from "../Pages/Dashboard/AdminDashboard/AllMaterials/AllMaterials";
@@ -97,10 +96,6 @@ const router = createBrowserRouter([
             {
                 path: "viewAllMaterials",
                 element: <TutorPrivateRoute><ViewAllMaterials></ViewAllMaterials></TutorPrivateRoute>
-            },
-            {
-                path: "viewAllNotes",
-                element: <TutorPrivateRoute><ViewAllNotes></ViewAllNotes></TutorPrivateRoute>
             },
             // Admin Routes
             {
