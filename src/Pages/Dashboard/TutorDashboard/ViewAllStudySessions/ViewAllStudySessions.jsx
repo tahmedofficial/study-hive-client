@@ -4,13 +4,13 @@ import useAuth from "../../../../Hooks/useAuth";
 
 const ViewAllStudySessions = () => {
 
-    const { sweetMessage, reload } = useAuth();
+    const { user, sweetMessage, reload } = useAuth();
     const axiosSecure = useAxiosSecure();
 
     const { data: approvedSessions = [] } = useQuery({
         queryKey: ["approSessions"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/courses");
+            const res = await axiosSecure.get(`/sessions/${user?.email}`);
             return res.data;
         }
     })
@@ -18,7 +18,7 @@ const ViewAllStudySessions = () => {
     const { data: rejectedSessions = [], refetch } = useQuery({
         queryKey: ["rejeSessions"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/rejSessions");
+            const res = await axiosSecure.get(`/rejSessions/${user?.email}`);
             return res.data;
         }
     })

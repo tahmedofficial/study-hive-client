@@ -3,10 +3,12 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import UploadMaterialsModal from "./UploadMaterialsModal";
 import WaitModal from "../../../../Components/WaitModal/WaitModal";
+import useAuth from "../../../../Hooks/useAuth";
 
 
 const UploadMaterials = () => {
 
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const [showModal, setShowModal] = useState(false);
     const [isUploding, setUploding] = useState(false);
@@ -15,7 +17,7 @@ const UploadMaterials = () => {
     const { data: approvedSessions = [] } = useQuery({
         queryKey: ["approSessions"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/courses");
+            const res = await axiosSecure.get(`/sessions/${user?.email}`);
             return res.data;
         }
     })

@@ -14,7 +14,6 @@ const UpdateModal = ({ onClose, id, refetch }) => {
         axiosSecure.get(`/courses/${id}`)
             .then(res => {
                 setSession(res.data);
-                console.log(res.data);
             })
     }, [axiosSecure, id])
 
@@ -52,8 +51,6 @@ const UpdateModal = ({ onClose, id, refetch }) => {
                     reload();
                     onClose();
                     sweetMessage("Updated Successfully");
-                    console.log("colection", res.data);
-
                 }
             })
     }

@@ -31,7 +31,6 @@ const ApprovedModal = ({ onClose, id, refetch, reload }) => {
             status: "approved",
             registrationFee: parseInt(registrationFee)
         }
-        console.log(data);
         axiosSecure.patch(`/courses/${id}`, data)
             .then(res => {
                 if (res.data.modifiedCount) {

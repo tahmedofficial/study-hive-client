@@ -24,7 +24,7 @@ const StatusModal = ({ onClose, id, refetch }) => {
             status: "rejected",
             rejectReason: rejectReason
         }
-        console.log(data);
+
         axiosSecure.patch(`/courses/${id}`, data)
             .then(res => {
                 if (res.data.modifiedCount) {
@@ -35,7 +35,6 @@ const StatusModal = ({ onClose, id, refetch }) => {
                 }
             })
     }
-    console.log("inmodal Status", id);
 
     return (
         <div ref={modalRef} onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">

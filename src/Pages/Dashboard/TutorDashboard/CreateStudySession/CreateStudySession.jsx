@@ -61,48 +61,58 @@ const CreateStudySession = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col lg:flex-row gap-5">
                         <div className="w-full">
+                            <h3 className="mb-2 ml-2">Tutor Name</h3>
                             <input {...register("tutorName")} className="h-10 outline-none rounded-lg px-3 w-full bg-white" disabled type="text" defaultValue={user?.displayName} />
                         </div>
                         <div className="w-full">
+                            <h3 className="mb-2 ml-2">Tutor Email</h3>
                             <input {...register("tutorEmail")} className="h-10 outline-none rounded-lg px-3 w-full bg-white" disabled type="text" defaultValue={user?.email} />
                         </div>
                     </div>
                     <div className="flex flex-col lg:flex-row gap-5 mt-5">
                         <div className="w-full">
+                            <h3 className="mb-2 ml-2">Title</h3>
                             <input {...register("title", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="Title" />
                             {errors.title && <span className="text-red-600">This field is required</span>}
                         </div>
                         <div className="w-full">
+                            <h3 className="mb-2 ml-2">Description</h3>
                             <input {...register("description", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="Description" />
                             {errors.description && <span className="text-red-600">This field is required</span>}
                         </div>
                     </div>
                     <div className="flex flex-col lg:flex-row gap-5 mt-5">
                         <div className="w-full">
-                            <input {...register("registrationStartDate", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="Registration Start Date" />
+                            <h3 className="mb-2 ml-2">Registration Start Date</h3>
+                            <input {...register("registrationStartDate", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="mm/dd/yy" />
                             {errors.registrationStartDate && <span className="text-red-600">This field is required</span>}
                         </div>
                         <div className="w-full">
-                            <input {...register("registrationEndDate", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="Registration End Date" />
+                            <h3 className="mb-2 ml-2">Registration End Date</h3>
+                            <input {...register("registrationEndDate", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="mm/dd/yy" />
                             {errors.registrationEndDate && <span className="text-red-600">This field is required</span>}
                         </div>
                     </div>
                     <div className="flex flex-col lg:flex-row gap-5 mt-5">
                         <div className="w-full">
-                            <input {...register("classStartTime", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="Class Start Date" />
+                            <h3 className="mb-2 ml-2">Class Start Date</h3>
+                            <input {...register("classStartTime", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="mm/dd/yy" />
                             {errors.classStartTime && <span className="text-red-600">This field is required</span>}
                         </div>
                         <div className="w-full">
-                            <input {...register("classEndDate", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="Class End Date" />
+                            <h3 className="mb-2 ml-2">Class End Date</h3>
+                            <input {...register("classEndDate", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="mm/dd/yy" />
                             {errors.classEndDate && <span className="text-red-600">This field is required</span>}
                         </div>
                     </div>
                     <div className="flex flex-col lg:flex-row gap-5 mt-5">
                         <div className="w-full">
+                            <h3 className="mb-2 ml-2">Duration</h3>
                             <input {...register("duration", { required: true })} className="h-10 outline-none rounded-lg px-3 w-full bg-white" type="text" placeholder="Duration" />
                             {errors.duration && <span className="text-red-600">This field is required</span>}
                         </div>
                         <div className="w-full">
+                            <h3 className="mb-2 ml-2">Registration Fee</h3>
                             <input {...register("registrationFee")} className="h-10 outline-none rounded-lg px-3 w-full bg-white" disabled type="text" defaultValue={0} />
                         </div>
                     </div>
