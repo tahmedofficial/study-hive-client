@@ -4,19 +4,21 @@ import { useEffect, useState } from "react";
 
 const useAdmin = () => {
 
-    const { user } = useAuth();
+    const { user, isLoading } = useAuth();
     const axiosSecure = useAxiosSecure();
     const [isAdmin, setAdmin] = useState(false);
     const [isPending, setPending] = useState(true);
 
     useEffect(() => {
         setPending(true);
-        axiosSecure.get(`/users/admin/${user?.email}`)
-            .then(res => {
-                setAdmin(res?.data?.admin);
-                setPending(false);
-            })
-    }, [axiosSecure, user])
+        if (!isLoading) {
+            axiosSecure.get(`/users/admin/${user?.email}`)
+                .then(res => {
+                    setAdmin(res?.data?.admin);
+                    setPending(false);
+                })
+        }
+    }, [axiosSecure, user, isLoading])
 
     return [isAdmin, isPending];
 };

@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 
 export const AuthContext = createContext(null);
@@ -15,6 +16,7 @@ const AuthProviders = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const sweetMessage = (message) => {
         Swal.fire({
@@ -78,10 +80,24 @@ const AuthProviders = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false);
+
+            if (currentUser) {
+                const userInfo = { email: currentUser.email };
+                axiosSecure.post("/jwt", userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem("access-token", res.data.token);
+                            setLoading(false);
+                        }
+                    })
+            }
+            else {
+                localStorage.removeItem("access-token");
+                setLoading(false);
+            }
         })
         return () => unsubscribe();
-    }, [user])
+    }, [user, axiosSecure])
 
     const authInfo = {
         user,
