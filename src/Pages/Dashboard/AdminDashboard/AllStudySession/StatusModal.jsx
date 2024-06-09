@@ -20,9 +20,11 @@ const StatusModal = ({ onClose, id, refetch }) => {
         event.preventDefault();
         const form = event.target;
         const rejectReason = form.rejectReason.value;
+        const feedback = form.feedback.value;
         const data = {
             status: "rejected",
-            rejectReason: rejectReason
+            rejectReason: rejectReason,
+            feedback: feedback
         }
 
         axiosSecure.patch(`/courses/${id}`, data)
@@ -44,6 +46,7 @@ const StatusModal = ({ onClose, id, refetch }) => {
                     <h1 className="text-2xl md:text-3xl font-semibold">Reject Reason</h1>
                     <form onSubmit={handleReject} className="flex flex-col gap-3">
                         <input className="h-10 bg-primary_bg_color outline-none px-3 rounded-lg" name="rejectReason" type="text" placeholder="Reject reason" />
+                        <input className="h-10 bg-primary_bg_color outline-none px-3 rounded-lg" name="feedback" type="text" placeholder="Feedback" />
                         <button className="bg-primary_color px-10 py-2 mt-4 text-white rounded-lg hover:opacity-65 duration-300">Reject</button>
                     </form>
                 </div>

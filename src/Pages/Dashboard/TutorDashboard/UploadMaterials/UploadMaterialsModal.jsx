@@ -8,20 +8,12 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 const image_key = import.meta.env.VITE_imageKey;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_key}`;
 
-
-
-// https://drive.google.com/uc?export=download&id=1b4Q9RU67RRMtBFiZ95Itq81fz4JK9Mec
-// https://drive.google.com/uc?id=1b4Q9RU67RRMtBFiZ95Itq81fz4JK9Mec
-// https://drive.google.com/file/d/1b4Q9RU67RRMtBFiZ95Itq81fz4JK9Mec/view?usp=sharing
-
-
 const UploadMaterialsModal = ({ onClose, id, uploding }) => {
 
     const { user, sweetMessage } = useAuth();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
-
 
     const onSubmit = async (data) => {
 

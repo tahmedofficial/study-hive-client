@@ -82,7 +82,7 @@ const ViewAllStudySessions = () => {
                             <th>#</th>
                             <th>Image</th>
                             <th>Tutor Name</th>
-                            <th>Tutor Email</th>
+                            <th>Feedback</th>
                             <th>Reject Reason</th>
                             <th>Action</th>
                         </tr>
@@ -99,7 +99,7 @@ const ViewAllStudySessions = () => {
                                     </div>
                                 </td>
                                 <td>{session.tutorName}</td>
-                                <td>{session.tutorEmail}</td>
+                                <td>{session.feedback}</td>
                                 <td>{session.rejectReason}</td>
                                 <td>
                                     <button onClick={() => handleRequest(session._id)} className="btn btn-sm bg-primary_color text-white">Request</button>
