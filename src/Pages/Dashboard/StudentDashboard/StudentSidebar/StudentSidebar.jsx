@@ -6,7 +6,7 @@ const StudentSidebar = () => {
             <li><NavLink to="/dashboard/bookedSession">Booked Session</NavLink></li>
             <li><NavLink to="/dashboard/createNote">Create Note</NavLink></li>
             <li><NavLink to="/dashboard/manageNotes">Manage Notes</NavLink></li>
-            <li><NavLink to="/dashboard/viewStudyMaterials">Study Materials</NavLink></li>
+            <li><NavLink to="/dashboard/viewStudyMaterials">View Study Materials</NavLink></li>
             <div className="divider"></div>
             <li><NavLink to="/">Home</NavLink></li>
         </ul>

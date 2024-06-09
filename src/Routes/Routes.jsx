@@ -22,6 +22,7 @@ import AdminPrivateRoute from "./AdminPrivateRoute";
 import TutorPrivateRoute from "./TutorPrivateRoute";
 import PaymentPage from "../Pages/PaymentPage/PaymentPage";
 import BookingDetails from "../Pages/Dashboard/StudentDashboard/BookedSession/BookingDetails";
+import StudentMaterialsDetails from "../Pages/Dashboard/StudentDashboard/StudentMaterialsDetails/StudentMaterialsDetails";
 
 
 const router = createBrowserRouter([
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
                 element: <BookedSession></BookedSession>
             },
             {
-                path:"bookingDetails/:id",
+                path: "bookingDetails/:id",
                 element: <BookingDetails></BookingDetails>
             },
             {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
             {
                 path: "viewStudyMaterials",
                 element: <ViewStudyMaterials></ViewStudyMaterials>
+            },
+            {
+                path: "materialsDetails/:id",
+                element: <StudentMaterialsDetails></StudentMaterialsDetails>
             },
             // Tutor Routes
             {
