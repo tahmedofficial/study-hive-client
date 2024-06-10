@@ -1,9 +1,10 @@
 import axios from "axios";
 
 // https://study-hive-server-tawny.vercel.app
+// http://localhost:5000
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000"
+    baseURL: "https://study-hive-server-tawny.vercel.app"
 })
 
 const useAxiosSecure = () => {

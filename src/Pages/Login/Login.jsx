@@ -4,7 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
 
-    const { loginUser, sweetMessage, errorMessage } = useAuth();
+    const { setUser, loginUser, sweetMessage, errorMessage } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -17,6 +17,7 @@ const Login = () => {
 
         loginUser(email, password)
             .then(result => {
+                setUser({ email: form.email.value });
                 sweetMessage(`${result?.user?.displayName} your are login successfully`)
                 navigate(location?.state ? location.state : "/")
             })

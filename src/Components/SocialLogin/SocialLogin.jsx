@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
 
-    const { loginWithGoogle, loginWithGithub, sweetMessage, errorMessage } = useAuth();
+    const { setUser, loginWithGoogle, loginWithGithub, sweetMessage, errorMessage } = useAuth();
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const location = useLocation();
@@ -13,6 +13,7 @@ const SocialLogin = () => {
     const handleGoogleLogin = () => {
         loginWithGoogle()
             .then(result => {
+                setUser({ email: result?.user?.email });
                 const user = {
                     name: result?.user?.displayName,
                     image: result?.user?.photoURL,
