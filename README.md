@@ -1,14 +1,32 @@
 # Study Hive
 
-Live link: https://study-hive-6e0e8.firebaseapp.com/
+- Live link: https://study-hive-6e0e8.firebaseapp.com/
+- Server Ropo: https://github.com/tahmedofficial/study-hive-server
 
-Admin email
+## Admin email
 ```
 tanvirahmed5232@gmail.com
 ```
 Password 
 ```
 tanvir
+```
+
+## To run this project locally, follow these steps:
+
+1. Clone the repository | Copy and paste your terminal
+ ```bash
+ git clone https://github.com/tahmedofficial/study-hive-client.git
+```
+
+2. Install npm | Copy and paste your terminal
+ ```bash
+ npm install
+```
+
+3. Run | Copy and paste your terminal
+ ```bash
+ npm run dev
 ```
 
 ## Features
